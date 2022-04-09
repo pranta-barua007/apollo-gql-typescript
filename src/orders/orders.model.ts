@@ -15,10 +15,7 @@ const ordersDB: Array<object> = [
     }
 ];
 
-function getAllOrders() {
+export function getAllOrders(): any {
     return ordersDB;
 }
 
-export = {
-    getAllOrders
-}

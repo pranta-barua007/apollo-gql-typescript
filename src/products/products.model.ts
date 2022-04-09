@@ -13,24 +13,24 @@ const productsDB : Array<object> = [
     }
 ];
 
-function getAllProducts() {
+export function getAllProducts(): any {
     return productsDB;
 }
 
-function getProductsByPrice(min: Number, max: Number) {
+export function getProductsByPrice(min: Number, max: Number): any {
     console.log(min, max)
     return productsDB.filter((product: any) => {
         return product.price >= min && product.price <= max; 
     });
 }
 
-function getProductById(productId: String) {
+export function getProductById(productId: String): any {
     return productsDB.find((product: any) => {
         return product.id === productId
     });
 }
 
-function addNewProduct(id: String, description: String, price: Number) {
+export function addNewProduct(id: String, description: String, price: Number): any {
     const newProduct = {
         id,
         description,
@@ -42,7 +42,7 @@ function addNewProduct(id: String, description: String, price: Number) {
     return newProduct;
 }
 
-function addNewProductReview(id: String, rating: Number, comment: String) {
+export function addNewProductReview(id: String, rating: Number, comment: String): any {
     const targetProduct: any = getProductById(id);
     if(targetProduct) {
         const newReview = { 
@@ -54,10 +54,3 @@ function addNewProductReview(id: String, rating: Number, comment: String) {
     return targetProduct;
 }
 
-export = {
-    getAllProducts,
-    getProductsByPrice,
-    getProductById,
-    addNewProduct,
-    addNewProductReview
-}

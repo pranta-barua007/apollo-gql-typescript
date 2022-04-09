@@ -1,19 +1,27 @@
 import "reflect-metadata";
-import { join } from 'path';
+//import { join } from 'path';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import { loadFilesSync } from '@graphql-tools/load-files';
+//import { loadFilesSync } from '@graphql-tools/load-files';
 import { makeExecutableSchema } from '@graphql-tools/schema';
+import { buildTypeDefsAndResolvers } from "type-graphql";
+//import { buildSchema } from "type-graphql";
+//import { ProductsResolvers } from "./products/products.resolvers";
+//import { OrdersResolvers } from "./orders/orders.resolvers";
 
-const typesArray = loadFilesSync(join(__dirname, '**/*.graphql'));
-const resolversArray = loadFilesSync(join(__dirname, '**/*.resolvers.ts'));
+// const typesArray = loadFilesSync(join(__dirname, '**/*.graphql'));
+// const resolversArray = loadFilesSync(join(__dirname, '**/*.resolvers.ts'));
 
 async function startApolloServer() {
     const app = express();
 
+    const { typeDefs, resolvers } = await buildTypeDefsAndResolvers({
+        resolvers: [__dirname + '**/*.resolver.ts'],
+      });
+
     const schema = makeExecutableSchema({
-        typeDefs: typesArray,
-        resolvers: resolversArray
+        typeDefs,
+        resolvers
     });
 
     const server = new ApolloServer({
