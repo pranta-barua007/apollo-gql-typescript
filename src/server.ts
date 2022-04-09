@@ -15,6 +15,8 @@ import { buildTypeDefsAndResolvers } from "type-graphql";
 async function startApolloServer() {
     const app = express();
 
+        //SOURCE: https://typegraphql.com/docs/bootstrap.html#create-typedefs-and-resolvers-map
+        //TODO: not working after building 
     const { typeDefs, resolvers } = await buildTypeDefsAndResolvers({
         resolvers: [join(__dirname, '**/*.resolver.ts')]
       });
@@ -40,3 +42,4 @@ async function startApolloServer() {
 };
 
 startApolloServer();
+
