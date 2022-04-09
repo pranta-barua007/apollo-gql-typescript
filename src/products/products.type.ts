@@ -1,8 +1,8 @@
-import { Field, ObjectType, Int, Float, ID } from "type-graphql";
+import { Field, ObjectType, Float, ID } from "type-graphql";
 
 @ObjectType()
 class Review {
-    @Field(() => Int)
+    @Field(() => Float)
     rating: number
 
     @Field()

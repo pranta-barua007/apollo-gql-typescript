@@ -2,7 +2,7 @@ import {
     Resolver,
     Query,
     Mutation,
-    Arg
+    Arg,
 } from "type-graphql";
 import { Product } from "./products.type";
 import { getAllProducts, getProductsByPrice, getProductById, addNewProduct, addNewProductReview } from "./products.model";
