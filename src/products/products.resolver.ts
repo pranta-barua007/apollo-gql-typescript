@@ -7,11 +7,11 @@ import {
 import { Product } from "./products.type";
 import { getAllProducts, getProductsByPrice, getProductById, addNewProduct, addNewProductReview } from "./products.model";
 
-@Resolver()
+@Resolver(Product)
 class ProductsResolver {
 
     @Query(() => [Product])
-    products(): Product[] {
+    products() {
         return getAllProducts();
     }
 
@@ -19,12 +19,12 @@ class ProductsResolver {
     prouctsByPrice(
         @Arg("min") min: Number,
         @Arg("max") max: Number,
-    ): Product[] {
+    ) {
         return getProductsByPrice(min, max);
     }
 
     @Query(() => Product)
-    productsById(@Arg("id") id: String): Product {
+    productsById(@Arg("id") id: String) {
         return getProductById(id);
     }
 
@@ -33,7 +33,7 @@ class ProductsResolver {
         @Arg("id") id: String, 
         @Arg("description") description: String, 
         @Arg("price") price: Number
-    ): Product {
+    ) {
         return addNewProduct(id, description, price);
     }
 
@@ -42,7 +42,7 @@ class ProductsResolver {
         @Arg("id") id: String, 
         @Arg("rating") rating: Number, 
         @Arg("comment") comment: String
-    ): Product {
+    ) {
         return addNewProductReview(id, rating, comment);
     }
 }

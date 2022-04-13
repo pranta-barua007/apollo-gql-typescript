@@ -5,10 +5,11 @@ import {
 import { Order } from "./orders.type";
 import { getAllOrders } from "./orders.model";
 
-@Resolver()
+@Resolver(Order)
 class OrdersResolver {
+    
     @Query(() => [Order])
-    orders(): Order[] {
+    orders() {
         return getAllOrders();
     }
 }

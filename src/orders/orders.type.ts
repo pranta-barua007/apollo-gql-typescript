@@ -13,7 +13,7 @@ class OrderItem {
 @ObjectType()
 export class Order {
     @Field()
-    date: Date
+    date: string
 
     @Field(() => Float)
     subtotal: number

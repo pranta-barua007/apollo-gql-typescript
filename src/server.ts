@@ -5,13 +5,14 @@ import { ApolloServer } from 'apollo-server-express';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { buildTypeDefsAndResolvers } from "type-graphql";
 
+const PORT = process.env.PORT || 5000;
+
 async function startApolloServer() {
     const app = express();
 
         //SOURCE: https://typegraphql.com/docs/bootstrap.html#create-typedefs-and-resolvers-map
-        //TODO: not working after building 
     const { typeDefs, resolvers } = await buildTypeDefsAndResolvers({
-        resolvers: [join(__dirname, '**/*.resolver.ts')]
+        resolvers: [join(__dirname, '**/*.resolver.{ts,js}')]
       });
 
     const schema = makeExecutableSchema({
@@ -29,8 +30,8 @@ async function startApolloServer() {
         path: '/graphql'
     });
 
-    app.listen(5000, () => {
-        console.log('Running GraphQL server...');
+    app.listen(PORT, () => {
+        console.log(`Running GraphQL server... on http://localhost:${PORT}/graphql`);
     });
 };
 
